@@ -1,0 +1,41 @@
+#number-column input {
+  display:inline-block;
+}
+
+table .glyphicon {
+  color:red;
+}
+
+td {
+  text-align: center;
+}
+
+#sum-box {
+  width:3em;
+}
+
+tfoot {
+  background-color: orange;
+  font-weight: bold;
+  text-align: center;
+}
+
+body {
+  height:700px;
+}
+
+.page-height {
+  height:700px;
+}
+
+.number {
+  display:inline-block;
+  border-color: grey;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  border-style:solid;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  width:2em;
+  text-align: center;
+}

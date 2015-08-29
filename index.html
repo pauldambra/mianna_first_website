@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.css" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="container-fluid">
+    <div class="row page-height">
+      <div class="col-xs-2">
+        <div class="page-height container-fluid" id="number-column">
+          <div class="row">
+            <input type="password">
+            <span class="number">0</span>
+          </div>
+          <div class="row">
+            <input type="password">
+            <span class="number">1</span>
+          </div>
+          <div class="row">
+            <input type="password">
+            <span class="number">2</span>
+          </div>
+          <div class="row">
+            <input type="password">
+            <span class="number">3</span>
+          </div>
+          <div class="row">
+            <input type="password">
+            <span class="number">4</span>
+          </div>
+          <div class="row">
+            <input type="password">
+            <span class="number">5</span>
+          </div>
+          <div class="row">
+            <input type="password">
+            <span class="number">6</span>
+          </div>
+          <div class="row">
+            <input type="password">
+            <span class="number">7</span>
+          </div>
+          <div class="row">
+            <input type="password">
+            <span class="number">8</span>
+          </div>
+          <div class="row">
+            <input type="password">
+            <span class="number">9</span>
+          </div>
+          <div class="row">
+            <input type="password">
+            <span class="number">10</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <div class="row">
+          <table  class="table table-bordered">
+            <tr>
+              <td><span class="glyphicon glyphicon-heart"></span></td>
+              <td><span class="glyphicon glyphicon-heart"></span></td>
+              <td><span class="glyphicon glyphicon-heart"></span></td>
+              <td><span class="glyphicon glyphicon-heart"></span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="http://www.coolmath-games.com/0-fireboy-watergirl-forest-temple"
+                   class="btn btn-info btn-xs"
+                   target="blank">
+                   FB&amp;WG
+                 </a>
+              </td>
+              <td>
+                <a href="http://www.disney.co.uk/disney-fairies/games/tinks-workshop-clean-up"
+                   class="btn btn-info btn-xs"
+                   target="blank">
+                   Fairy
+                 </a>
+              </td>
+              <td></td><td></td>
+            </tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tfoot>
+              <tr><td colspan="4">GAMES</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="row">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">earn money math</h3>
+            </div>
+            <div class="panel-body">
+                  <label id="sum">the sum</label>
+                  <input type="text" id="sum-box" />
+                  <button id="am-i-right" class="btn btn-xs btn-success">Am I right?</button>
+            </div>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.min.js"></script>
+    <script>
+
+
+      $(function(){
+        function showSum() {
+          mathenticate.generate();
+          $('#sum').html(mathenticate.show()+" = ");
+          $('#sum-box').val('');
+        }
+
+      var mathenticate = {
+          bounds: {
+              lower: 5,
+              upper: 20
+          },
+          first: 0,
+          second: 0,
+          generate: function()
+          {
+              this.first = Math.floor(Math.random() * this.bounds.lower) + 1;
+              this.second = Math.floor(Math.random() * this.bounds.upper) + 1;
+          },
+          show: function()
+          {
+              return this.first + ' + ' + this.second;
+          },
+          solve: function()
+          {
+              return this.first + this.second;
+          }
+      };
+
+      showSum();
+
+      $('#am-i-right').on('click', function(e){
+          e.preventDefault();
+          var sumBoxVal = $('#sum-box').val();
+          var providedAnswer = parseInt(sumBoxVal, 10);
+          var correctAnswer = mathenticate.solve();
+          if( providedAnswer === correctAnswer )
+          {
+            swal("Good job!", "You did it!", "success");
+            showSum();
+          } else {
+            sweetAlert("Oops...", "Try again!", "error");
+          }
+      });
+
+  });
+    </script>
+  </body>
+</html>
