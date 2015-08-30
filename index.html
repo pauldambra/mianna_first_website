@@ -76,7 +76,6 @@
               <td><span class="glyphicon glyphicon-heart"></span></td>
               <td><span class="glyphicon glyphicon-heart"></span></td>
               <td><span class="glyphicon glyphicon-heart"></span></td>
-              <td><span class="glyphicon glyphicon-heart"></span></td>
             </tr>
             <tr>
               <td>
@@ -93,13 +92,19 @@
                    Fairy
                  </a>
               </td>
-              <td></td><td></td>
+              <td>
+                <a href="http://www.mafa.com/The-Little-Mermaid-Dress-Up-1"
+                   class="btn btn-info btn-xs"
+                   target="blank">
+                   Mermaid<br/> Dress <br/>Up
+                 </a>
+              </td>
             </tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
             <tfoot>
-              <tr><td colspan="4">GAMES</td></tr>
+              <tr><td colspan="3">GAMES</td></tr>
             </tfoot>
           </table>
         </div>
@@ -115,7 +120,49 @@
             </div>
           </div>
         </div>
-        <div class="row"></div>
+      </div>
+      <div class="col-xs-2">
+        <div class="row container-fluid">
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Money</h3>
+                </div>
+                <div class="panel-body">
+                  <span class="glyphicon glyphicon-gbp" id="earnings">0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Health</h3>
+                </div>
+                <div class="panel-body" id="health">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="panel-title form-inline">
+                    <div class="form-group">
+                    <label for="personsName">Name: </label>
+                    <input class="form-control" id="personsName" name="personsName">
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-body">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -158,6 +205,16 @@
 
       showSum();
 
+      function addMoreMoney() {
+        var currentMoney = parseInt(localStorage.money, 10) || 0;
+        localStorage.setItem("money", currentMoney + 10);
+      }
+      function showOurMoney() {
+        var currentMoney = parseInt(localStorage.money, 10) || 0;
+        $('#earnings').html(localStorage.money);
+      }
+      showOurMoney();
+
       $('#am-i-right').on('click', function(e){
           e.preventDefault();
           var sumBoxVal = $('#sum-box').val();
@@ -165,13 +222,20 @@
           var correctAnswer = mathenticate.solve();
           if( providedAnswer === correctAnswer )
           {
-            swal("Good job!", "You did it!", "success");
+            sweetAlert("Good job!", "You did it!", "success");
+            addMoreMoney();
+            showOurMoney();
             showSum();
           } else {
             sweetAlert("Oops...", "Try again!", "error");
           }
       });
 
+      $('#personsName').val(localStorage.personsName);
+      $('#personsName').on('blur', function(e) {
+        var name = $(this).val();
+        localStorage.setItem('personsName', name);
+      });
   });
     </script>
   </body>

@@ -39,3 +39,11 @@ body {
   width:2em;
   text-align: center;
 }
+
+#earnings {
+  font-size: large;
+}
+
+#health {
+  background-color: green;
+}
