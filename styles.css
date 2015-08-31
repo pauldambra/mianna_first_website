@@ -10,6 +10,10 @@ td {
   text-align: center;
 }
 
+.minecraft-panel {
+  padding:1px;
+}
+
 #sum-box {
   width:3em;
 }

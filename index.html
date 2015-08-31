@@ -21,7 +21,7 @@
   </head>
   <body class="container-fluid">
     <div class="row page-height">
-      <div class="col-xs-2">
+      <div class="col-md-2">
         <div class="page-height container-fluid" id="number-column">
           <div class="row">
             <input type="password">
@@ -69,7 +69,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-2">
+      <div class="col-md-3">
         <div class="row">
           <table  class="table table-bordered">
             <tr>
@@ -109,19 +109,35 @@
           </table>
         </div>
         <div class="row">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">earn money math</h3>
-            </div>
-            <div class="panel-body">
-                  <label id="sum">the sum</label>
-                  <input type="text" id="sum-box" />
-                  <button id="am-i-right" class="btn btn-xs btn-success">Am I right?</button>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">earn money math</h3>
+                  </div>
+                  <div class="panel-body">
+                        <label id="sum">the sum</label>
+                        <input type="number" id="sum-box" />
+                        <button id="am-i-right" class="btn btn-xs btn-success">Am I right?</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="user">
+                  name
+                  <input name="user" class="form-control">
+                </label>
+                <label for="password">
+                  password
+                  <input name="password" type="password" class="form-control">
+                </label>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xs-2">
+      <div class="col-md-3">
         <div class="row container-fluid">
           <div class="row">
             <div class="col-xs-6">
@@ -158,6 +174,30 @@
                   </div>
                 </div>
                 <div class="panel-body">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="panel-title">
+                    MineCraft(ish)
+                    <button class="pull-right btn btn-xs btn-success" id="fullscreen-minecraft">
+                      <span class="glyphicon glyphicon-fullscreen"></span>
+                       fullscreen
+                    </button>
+                  </div>
+                </div>
+                <div class="panel-body minecraft-panel">
+                  <iframe src="http://wb.buz.co/"
+                          allowFullScreen="true"
+                          width="100%"
+                          height="100%"
+                          id="minecraft-iframe">
+                   <p>Your browser does not support iframes.</p>
+                  </iframe>
                 </div>
               </div>
             </div>
@@ -236,6 +276,19 @@
         var name = $(this).val();
         localStorage.setItem('personsName', name);
       });
+
+      $('#fullscreen-minecraft').on('click', function() {
+        var elem = document.getElementById("minecraft-iframe");
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        }
+      })
   });
     </script>
   </body>
