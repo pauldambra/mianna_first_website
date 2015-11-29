@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="styles.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -100,7 +101,17 @@
                  </a>
               </td>
             </tr>
-            <tr><td></td><td></td><td></td></tr>
+            <tr>
+              <td>
+                <a href="http://jayisgames.com/games/awesome-happy-heroes/"
+                   class="btn btn-info btn-xs"
+                   target="blank">
+                   Happy<br/> Heroes
+                 </a>
+
+              </td>
+              <td></td><td></td>
+            </tr>
             <tr><td></td><td></td><td></td></tr>
             <tr><td></td><td></td><td></td></tr>
             <tfoot>
@@ -204,6 +215,66 @@
           </div>
         </div>
       </div>
+
+      <div class="col-md-3 col-md-offset-1 shop">
+        <div class="row">
+          <div class="col-xs-12 awning">
+            <img src="awning.jpg" class="img-responsive" alt="Responsive image">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 shop-item">
+            <div class="item">Pick-axe</div>
+            <div class="price">£2</div>
+            <div>owned? <span class="owned"></span></div>
+          </div>
+          <div class="col-xs-6 shop-item">
+            <div class="item">Axe</div>
+            <div class="price">£1</div>
+            <div>owned? <span class="owned"></span></div>
+          </div>
+          <div class="col-xs-6 shop-item">
+            <div class="item">Shovel</div>
+            <div class="price">£3</div>
+            <div>owned? <span class="owned"></span></div>
+          </div>
+          <div class="col-xs-6 shop-item">
+            <div class="item">Diamond Sword</div>
+            <div class="price">£5</div>
+            <div>owned? <span class="owned"></span></div>
+          </div>
+          <div class="col-xs-6 shop-item">
+            <div class="item">Hoe</div>
+            <div class="price">£4</div>
+            <div>owned? <span class="owned"></span></div>
+          </div>
+          <div class="col-xs-6 shop-item">
+            <div class="item">Diamond Helmet</div>
+            <div class="price">£5</div>
+            <div>owned? <span class="owned"></span></div>
+          </div>
+          <div class="col-xs-6 shop-item">
+            <div class="item">Gold</div>
+            <div class="price">£1</div>
+            <div>owned? <span class="owned"></span></div>
+          </div>
+          <div class="col-xs-6 shop-item">
+            <div class="item">Money</div>
+            <div class="price">£6</div>
+            <div>owned? <span class="owned"></span></div>
+          </div>
+          <div class="col-xs-6 shop-item">
+            <div class="item">Cooked Chicken</div>
+            <div class="price">£2</div>
+            <div>owned? <span class="owned"></span></div>
+          </div>
+          <div class="col-xs-6 shop-item">
+            <div class="item">Oven</div>
+            <div class="price">£1</div>
+            <div>owned? <span class="owned"></span></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -249,11 +320,45 @@
         var currentMoney = parseInt(localStorage.money, 10) || 0;
         localStorage.setItem("money", currentMoney + 10);
       }
-      function showOurMoney() {
+      function spendMoney(cost) {
         var currentMoney = parseInt(localStorage.money, 10) || 0;
+        localStorage.setItem("money", currentMoney - cost);
+      }
+      function getCurrentMoney() {
+        return parseInt(localStorage.money, 10) || 0;
+      }
+      function showOurMoney() {
+        var currentMoney = getCurrentMoney();
         $('#earnings').html(localStorage.money);
       }
       showOurMoney();
+
+      $('.shop-item').click(function() {
+        var $price = $(this).find('.price');
+        var price = parseInt($price.text().substring(1), 10);
+        var balance = getCurrentMoney();
+
+        if (balance < price) {
+          sweetAlert("Woah!", "You can not afford this!!", "error");
+          return;
+        }
+
+        spendMoney(price);
+        showOurMoney();
+        var $owned = $(this).find('.owned');
+        $owned.append('<i class="fa fa-check"></i>');
+        var items = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : [];
+        items.push($(this).find('.item').text());
+        localStorage.setItem("items", JSON.stringify(items));
+      })
+
+        var items = localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : [];
+        items.forEach(function(item) {
+          var matchedItem = $('.shop-item:contains('+item+')');
+          if (matchedItem) {
+            matchedItem.find('.owned').append('<i class="fa fa-check"></i>');
+          }
+        });
 
       $('#am-i-right').on('click', function(e){
           e.preventDefault();

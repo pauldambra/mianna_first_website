@@ -2,6 +2,23 @@
   display:inline-block;
 }
 
+.shop {
+  border-left: 1px solid grey;
+}
+
+.awning {
+  padding:0;  
+}
+
+.shop-item {
+  border: 1px solid black;
+  border-radius:4px;
+}
+
+.fa-check {
+  color: green;
+}
+
 table .glyphicon {
   color:red;
 }
