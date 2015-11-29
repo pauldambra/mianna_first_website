@@ -7,12 +7,23 @@
 }
 
 .awning {
-  padding:0;  
+  padding:0;
+}
+
+.reading {
+  transform: rotate(30deg);
+  transform-origin: left;
+}
+
+.reading a {
+  text-decoration: none;
+  color:black;
 }
 
 .shop-item {
   border: 1px solid black;
   border-radius:4px;
+  cursor: pointer;
 }
 
 .fa-check {
